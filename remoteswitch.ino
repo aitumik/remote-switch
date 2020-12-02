@@ -45,4 +45,31 @@ void loop() {
   while(!client.available()) {
     delay(1);
   }
+
+  String request = client.readStringUntil('\r');
+  // I want to see how the request is from the app
+  Serial.println(request);
+  client.flush();
+
+  int value = LOW;
+  //if there is LED=ON on the request then turn on the led
+  if(request.indexOf("/LED=ON") != -1) {
+    digitalWrite(ledPin,HIGH);
+    //set the value to high to allow toggling
+    value = HIGH;
+  }
+  if(request.indexOf("/LED=OFF") != -1) {
+    digitalWrite(ledPing,LOW);
+    value = LOW;
+  }
+
+  client.println("The led is now: ");
+  if(value == HIGH) {
+    client.print("ON");
+  } else {
+    client.print("OFF");
+  }
+  delay(1);
+  Serial.println("Client disonnected");
+  Serial.println("");
 }
