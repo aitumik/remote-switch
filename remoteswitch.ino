@@ -1,6 +1,6 @@
 #include <ESP8266WiFi.h>
 
-const char* ssid = "MUGO"; //replace this with your own ssid
+const char* ssid = "JOHN"; //replace this with your own ssid
 const char* password = "mugo2020"; //replace this with your password
 
 int ledPin = 13;
@@ -10,7 +10,7 @@ void setup() {
   Serial.begin(115200);
   delay(10);
   pinMode(ledPin,OUTPUT);
-  digitalWrite(ledPing,LOW);
+  digitalWrite(ledPin,LOW);
 
   //connect to wifi
   Serial.println();
@@ -59,7 +59,7 @@ void loop() {
     value = HIGH;
   }
   if(request.indexOf("/LED=OFF") != -1) {
-    digitalWrite(ledPing,LOW);
+    digitalWrite(ledPin,LOW);
     value = LOW;
   }
 
